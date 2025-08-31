@@ -260,3 +260,81 @@
   background: #ccc;
   border-radius: 4px;
 }
+.note-container {
+  width: 500px;
+  margin: 30px auto;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.tabs button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.3s;
+}
+
+.tabs button.active {
+  background: #4cafef;
+  color: white;
+}
+
+.content {
+  text-align: center;
+}
+
+.note-section {
+  text-align: left;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.toolbar button {
+  border: none;
+  background: #ddd;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.toolbar button:hover {
+  background: #bbb;
+}
+
+.toolbar input[type="color"] {
+  border: none;
+  cursor: pointer;
+  height: 28px;
+  width: 28px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.editor {
+  min-height: 150px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  outline: none;
+}
+

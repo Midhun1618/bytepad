@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  ChevronRight, Plus, Bold, Italic, Underline, CheckSquare, Highlighter, Link, Check, BookOpen, Edit3, Image as ImageIcon
+  Plus, Bold, Italic, Underline, CheckSquare, Highlighter, Link, 
+  Check, BookOpen, Edit3, Image as ImageIcon,
+  List, AlignLeft, AlignCenter, AlignRight, Palette
 } from 'lucide-react';
 import './NoteMain.css';
-
 
 const NoteMain = () => {
   const [books, setBooks] = useState([
@@ -34,6 +35,12 @@ const NoteMain = () => {
   const [showSaved, setShowSaved] = useState(false);
 
   const editorRef = useRef(null);
+  const [text, setText] = useState("");
+
+const handleChange = (e) => {
+  setText(e.target.value);  
+};
+
 
   const handleBookClick = (book) => {
     setSelectedBook(book);
@@ -85,8 +92,8 @@ const NoteMain = () => {
     }
   };
 
-  const formatText = (command) => {
-    document.execCommand(command, false, null);
+  const formatText = (command, value = null) => {
+    document.execCommand(command, false, value);
     editorRef.current?.focus();
   };
 
@@ -167,17 +174,32 @@ const NoteMain = () => {
         {selectedNote ? (
           <>
             <div className="toolbar">
+              {/* Formatting buttons */}
               <div className="toolbar-group">
                 <button onClick={() => formatText('bold')}><Bold className="icon" /></button>
                 <button onClick={() => formatText('italic')}><Italic className="icon" /></button>
                 <button onClick={() => formatText('underline')}><Underline className="icon" /></button>
+                <button onClick={() => formatText('insertUnorderedList')}><List className="icon" /></button>
               </div>
+
               <div className="toolbar-group">
+                <button onClick={() => formatText('justifyLeft')}><AlignLeft className="icon" /></button>
+                <button onClick={() => formatText('justifyCenter')}><AlignCenter className="icon" /></button>
+                <button onClick={() => formatText('justifyRight')}><AlignRight className="icon" /></button>
+              </div>
+
+              <div className="toolbar-group">
+                <input 
+                  type="color" 
+                  onChange={(e) => formatText('foreColor', e.target.value)} 
+                  title="Text Color" 
+                />
                 <button><CheckSquare className="icon" /></button>
                 <button><Highlighter className="icon" /></button>
                 <button><Link className="icon" /></button>
-                <button><img className="icon" /></button>
+                <button><ImageIcon className="icon" /></button>
               </div>
+
               <button className="save-btn" onClick={handleSave}>
                 {showSaved ? <><Check className="icon" /> Saved!</> : <><Edit3 className="icon" /> Save</>}
               </button>
